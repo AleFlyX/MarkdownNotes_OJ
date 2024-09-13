@@ -1,0 +1,201 @@
+# 基础
+* let
+* console.log()
+* document.write()
+* alert()
+* string处理
+* 与、或、非，跟c语言一样，不解释
+* switch() case ，跟C语言一样
+* 三元运算符 “？” “:” 
+## let
+let块级作用域：let 声明的变量只在它所在的代码块（{}内）中有效
+## const
+全局变量，给const变量定义且赋值之后一些情况下无法改变（read only），但对于数组来说某些情况可变
+~~~
+const arr=[1,2,3]
+/*你无法通过arr=[4,5,6]改变整个数组，但是可以一位一位的改*/
+
+arr[0]=6,则arr=[6,2,3]
+
+~~~
+
+### 若要真正做到保护数据Object.freeze
+
+
+### In a word：js的变量定义很灵活，你无需考虑变量类型如int、long、double还是string，变量类型跟Python一样智能，只需要考虑这个变量在代码的什么范围内会被使用，其中let只将某个变量定义在某一对大括号中使用。
+
+当然，`let` 是 JavaScript 中用于声明块级作用域本地变量的关键字。与 `var` 关键字相比，`let` 提供了更好的作用域控制。以下是几个使用 `let` 的简单例子：
+
+### 例子 1：基本声明
+
+```
+let name = "Alice";
+console.log(name); // 输出: Alice
+```
+
+在这个例子中，`let` 被用来声明一个名为 `name` 的变量，并将其初始化为字符串 `"Alice"`。
+
+### 例子 2：块级作用域
+
+```
+if (true) {
+    let greeting = "Hello";
+    console.log(greeting);
+     // 输出: Hello
+}
+// console.log(greeting); // 这会抛出 ReferenceError，因为 greeting 只在 if 语句块内有效
+```
+
+在这个例子中，`greeting` 变量使用 `let` 在 `if` 语句块中声明，因此它只在那个块内有效。如果尝试在块外访问 `greeting`，则会引发 `ReferenceError`。
+
+### 例子 3：循环中的 `let`
+
+```
+for (let i = 0; i < 3; i++) {
+    console.log(i); // 输出: 0, 1, 2
+}
+// console.log(i); // 这会抛出 ReferenceError，因为 i 只在 for 循环的块级作用域内有效
+```
+
+在这个例子中，`let` 用于在 `for` 循环中声明循环变量 `i`。由于 `let` 的块级作用域，`i` 只在循环体内有效。
+
+### 例子 4：函数内的 `let`
+
+```
+function greet(name) {
+    let greeting = "Hello, " + name + "!";
+    console.log(greeting);
+}
+
+greet("Bob"); // 输出: Hello, Bob!
+// console.log(greeting); // 这会抛出 ReferenceError，因为 greeting 只在 greet 函数的作用域内有效
+```
+
+在这个例子中，`let` 用于在函数 `greet` 内部声明一个局部变量 `greeting`。这个变量仅在函数执行期间有效。
+
+### 例子 5：`let` 与 `const` 对比（虽然不是直接使用 `let` 的例子，但有助于理解）
+
+# *局部变量的const优先级高于在函数外定义的全局变量*
+
+```
+const PI = 3.14;
+// PI = 4; // 这会抛出 TypeError，因为 const 声明的变量不能被重新赋值
+
+let radius = 5;
+radius = 10; // 这可以，因为 let 声明的变量可以被重新赋值
+```
+
+这个例子展示了 `let` 和 `const` 之间的一个关键区别：使用 `let` 声明的变量可以被重新赋值，而使用 `const` 声明的变量则不可以。请注意，这个例子本身并没有直接使用 `let` 来展示新特性，而是通过与 `const` 的对比来强调 `let` 的一个方面。
+
+
+
+
+## console.log
+相当于你C语言的printf，而且结构差不多
+例如：
+```
+console.log("Hello, world!");  
+// 输出: Hello, world!  
+  
+let number = 42;  
+console.log(number);  
+// 输出: 42  
+  
+console.log("The answer is", number);  
+// 输出: The answer is 42  
+  
+  
+function add(a, b) {  
+    return a + b;  
+}  
+  
+console.log(add(5, 3));  
+// 输出: 8
+```
+
+
+## alert
+在浏览器中显示一个带有一段消息和一个确认按钮的警告框
+例如：
+```
+alert("Hello, world!");
+//经典hello world
+
+let message = "Hello, " + "world!";  
+alert(message);
+//输出变量message的内容
+```
+
+
+## string
+js的string可进行的处理和c艹一样方便，比如仅仅用一个加号就能把俩字符串串联
+ 例：
+ ```
+ 
+ ```
+
+
+## 三元运算符
+
+
+```
+const greeting = isBirthday
+  ? "小王生日快乐，祝你有个美好的一天！"
+  : "小王早上好。";
+  
+  
+  
+  
+
+
+下面的函数使用 if，else if 和 else 语句来检查多个条件：
+
+function findGreaterOrEqual(a, b) {
+  if (a === b) {
+    return "a and b are equal";
+  }
+  else if (a > b) {
+    return "a is greater";
+  }
+  else {
+    return "b is greater";
+  }
+}
+以上函数可以使用多个三元运算符重写：
+
+function findGreaterOrEqual(a, b) {
+  return (a === b) ? "a and b are equal" 
+    : (a > b) ? "a is greater" 
+    : "b is greater";
+}
+```
+
+## “\”的使用
+
+~~~
+\'	单引号
+\"	双引号
+\\	反斜杠
+\n	换行符
+\t	制表符
+\r	回车
+\b	退格符
+\f	换页符
+~~~
+
+
+## if else跟C语言一样不赘述
+
+## switch case
+
+~~~
+ switch (var){
+   case val:
+     /*action*/
+     break;
+   case....
+   default:
+     /*action*/
+     break;
+ }
+~~~

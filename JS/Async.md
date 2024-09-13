@@ -1,0 +1,21 @@
+## 等待超时
+使用 JavaScript 函数时， 您可以指定在超时时执行的回调函数：setTimeout()
+~~~
+setTimeout(myFunction, 3000);
+
+function myFunction() {
+  document.getElementById("demo").innerHTML = "I love You !!";
+}
+
+setTimeout(function() { myFunction("I love You !!!"); }, 3000);
+
+function myFunction(value) {
+  document.getElementById("demo").innerHTML = value;
+}
+~~~
+
+## setInterval按规定间隔去执行函数
+~~~
+setInterval(functionName,time(ms))
+~~~
+

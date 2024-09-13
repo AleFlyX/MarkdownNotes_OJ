@@ -1,0 +1,149 @@
+# lisentener
+* 点击事件监听器
+* 键盘事件监听器
+* 页面加载事件监听器
+* 鼠标移入移出事件监听器
+* 表单提交事件监听器
+
+
+监听器（Listeners）通常用于监听和响应网页上的各种事件，比如点击、键盘输入、页面加载等。下面有几个使用JavaScript监听器的案例：
+
+### 1. 点击事件监听器
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<button id="myButton">点击我</button>
+
+<script>
+// 获取按钮元素
+var button = document.getElementById("myButton");
+
+// 为按钮添加点击事件监听器
+button.addEventListener("click", function() {
+  alert("按钮被点击了！");
+});
+</script>
+
+</body>
+</html>
+```
+
+### 2. 键盘事件监听器
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<input type="text" id="myInput" placeholder="在这里输入文字...">
+
+<script>
+// 获取输入框元素
+var input = document.getElementById("myInput");
+
+// 为输入框添加键盘按下事件监听器
+input.addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    alert("你按下了回车键！");
+  }
+});
+</script>
+
+</body>
+</html>
+```
+
+### 3. 页面加载事件监听器
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+// 当页面加载完成时执行
+window.addEventListener("load", function() {
+  alert("页面已加载完成！");
+});
+</script>
+
+</body>
+</html>
+```
+
+### 4. 鼠标移入移出事件监听器
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="myDiv" style="width:100px;height:100px;background-color:lightblue;">
+  鼠标移入我
+</div>
+
+<script>
+// 获取div元素
+var div = document.getElementById("myDiv");
+
+// 为div添加鼠标移入事件监听器
+div.addEventListener("mouseover", function() {
+  this.style.backgroundColor = "red";
+});
+
+// 为div添加鼠标移出事件监听器
+div.addEventListener("mouseout", function() {
+  this.style.backgroundColor = "lightblue";
+});
+</script>
+
+</body>
+</html>
+```
+
+### 5. 表单提交事件监听器
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<form id="myForm">
+  <input type="text" name="username" placeholder="用户名">
+  <input type="submit" value="提交">
+</form>
+
+<script>
+// 获取表单元素
+var form = document.getElementById("myForm");
+
+// 为表单添加提交事件监听器
+form.addEventListener("submit", function(event) {
+  // 阻止表单的默认提交行为
+  event.preventDefault();
+  
+  // 这里可以添加AJAX请求或其他逻辑
+  alert("表单已提交，但页面未跳转！");
+});
+</script>
+
+</body>
+</html>
+```
+通过使用`addEventListener`方法，你可以为几乎任何元素添加事件监听器，并指定当事件发生时应该执行的函数。
+
+# *移步DOM*
+# Selector
+- .querySelector("#id"或者".name"或者"元素默认名")
+- getElementById()
+- getElementByName()
+
+# .style.display/border....其他css属性
+例如：
+~~~
+button.style.display="none" 隐藏按钮
+
+~~~

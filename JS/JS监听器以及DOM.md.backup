@@ -1,0 +1,638 @@
+# lisentener
+* 点击事件监听器
+* 键盘事件监听器
+* 页面加载事件监听器
+* 鼠标移入移出事件监听器
+* 表单提交事件监听器
+### 普通监听
+#### 使用内联的事件处理函数： 就是你添加一个事件监听器作为 HTML 元素的属性。
+在 JavaScript 早期，这是使用事件唯一的方法。看下面这个例子：
+// Example of using an inline event handler
+~~~
+<button onclick="alert('Hello')">Click me!</button>
+//弹出一个包含文本“Hello”的警告框
+~~~
+
+#### 使用 onEvent 处理函数： 当元素只有一个事件处理函数时你可以这样使用。当你使用这个方法添加超过一个事件处理函数时，只有最后一个函数会运行，因为它会覆盖之前其他的。
+~~~
+<!-- An example of using an on-event handler -->
+
+<button>Click me!</button>
+
+<script>
+  const myButton = document.querySelector('button')
+	
+  myButton.onclick = function() {
+    console.log("Run first handler")
+  }
+	
+  myButton.onclick = function() {
+    console.log("Run second handler")
+  }
+</script>
+
+结果：Run second handler
+
+监听器（Listeners）通常用于监听和响应网页上的各种事件，比如点击、键盘输入、页面加载等。下面有几个使用JavaScript监听器的案例：
+~~~
+
+## 事件类型
+浏览器允许你监听的 DOM 事件种类很多，下面列举一些常见的。
+鼠标事件：
+
+click：当元素被点击
+dbclick：当元素被双击
+mouseover：当鼠标指针移入元素
+mouseleave：当鼠标指针离开元素
+mousedown：当鼠标在元素上按下
+mouseup：当鼠标在元素上松开
+键盘事件：
+
+keydown：当键盘按键被按下
+keyup：当键盘按键被松开
+keypress：当按键被按下并显示事件的按键时，注意这个事件不是所有按键都可以触发，尤其是不可打印字符按键
+表单事件：
+
+submit：当表单被提交
+input：当输入框字段更改
+change：当表单元素值被更改并失焦
+窗口事件：
+
+load：当浏览器完成页面加载
+unload：当用户离开页面
+resize：当浏览器窗口被调整大小
+scroll：当用户滚动浏览文档
+### 1. 点击事件监听器
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<button id="myButton">点击我</button>
+
+<script>
+// 获取按钮元素
+var button = document.getElementById("myButton");
+
+// 为按钮添加点击事件监听器
+button.addEventListener("click", function() {
+  alert("按钮被点击了！");
+});
+</script>
+
+</body>
+</html>
+```
+
+### 2. 键盘事件监听器
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<input type="text" id="myInput" placeholder="在这里输入文字...">
+
+<script>
+// 获取输入框元素
+var input = document.getElementById("myInput");
+
+// 为输入框添加键盘按下事件监听器
+input.addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    alert("你按下了回车键！");
+  }
+});
+</script>
+
+</body>
+</html>
+```
+
+### 3. 页面加载事件监听器
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+// 当页面加载完成时执行
+window.addEventListener("load", function() {
+  alert("页面已加载完成！");
+});
+</script>
+
+</body>
+</html>
+```
+
+### 4. 鼠标移入移出事件监听器
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="myDiv" style="width:100px;height:100px;background-color:lightblue;">
+  鼠标移入我
+</div>
+
+<script>
+// 获取div元素
+var div = document.getElementById("myDiv");
+
+// 为div添加鼠标移入事件监听器
+div.addEventListener("mouseover", function() {
+  this.style.backgroundColor = "red";
+});
+
+// 为div添加鼠标移出事件监听器
+div.addEventListener("mouseout", function() {
+  this.style.backgroundColor = "lightblue";
+});
+</script>
+
+</body>
+</html>
+```
+
+### 5. 表单提交事件监听器
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<form id="myForm">
+  <input type="text" name="username" placeholder="用户名">
+  <input type="submit" value="提交">
+</form>
+
+<script>
+// 获取表单元素
+var form = document.getElementById("myForm");
+
+// 为表单添加提交事件监听器
+form.addEventListener("submit", function(event) {
+  // 阻止表单的默认提交行为
+  event.preventDefault();
+  
+  // 这里可以添加AJAX请求或其他逻辑
+  alert("表单已提交，但页面未跳转！");
+});
+</script>
+
+</body>
+</html>
+```
+通过使用`addEventListener`方法，你可以为几乎任何元素添加事件监听器，并指定当事件发生时应该执行的函数。
+
+
+# Selector
+- .querySelector("#id"或者".name"或者"元素默认名")
+- querySelectorAll()
+- getElementById()
+- getElementsByClassName()
+- getElementsByTagName()
+
+
+
+### 1. getElementById()
+
+- **作用**：`getElementById()` 方法返回具有指定 ID 的第一个元素。由于ID在一个HTML文档中应该是唯一的，因此这个方法只返回一个元素。
+- **用法**：`document.getElementById('id')`，其中 `'id'` 是你想要获取的元素的ID。
+- **返回值**：具有指定ID的元素，如果没有找到则返回`null`。
+
+### 2. getElementsByClassName()
+
+- **作用**：`getElementsByClassName()` 方法返回一个实时（live）的 HTMLCollection，包含所有具有指定类名的元素。HTMLCollection是动态的，如果文档结构发生变化，返回的集合也会更新。
+- **用法**：`document.getElementsByClassName('className')`，其中 `'className'` 是你想要选择的元素的类名。注意，如果你需要选择多个类名，它们之间应该用空格分隔，如 `'class1 class2'`。
+- **返回值**：一个包含所有具有指定类名的元素的 HTMLCollection。
+
+### 3. getElementsByTagName()
+
+- **作用**：`getElementsByTagName()` 方法返回一个实时的 HTMLCollection，包含文档中所有给定标签名的元素。
+- **用法**：`document.getElementsByTagName('tagName')`，其中 `'tagName'` 是你想要选择的元素标签名，如 `'div'`、`'span'` 等。
+- **返回值**：一个包含所有指定标签名的元素的 HTMLCollection。
+
+### 4. querySelector()
+
+- **作用**：`querySelector()` 方法返回文档中匹配指定 CSS 选择器的第一个 Element。如果没有找到匹配项，则返回 `null`。
+- **用法**：`document.querySelector('selector')`，其中 `'selector'` 是一个CSS选择器字符串，比如 `'.myClass'`（选择所有类名为 `myClass` 的元素）或 `'#myId'`（选择ID为 `myId` 的元素）。
+- **返回值**：匹配的第一个元素，如果没有找到匹配项，则为 `null`。
+让我们再看一个像是 CSS 选择器一样使用 querySelector() 的例子。下方 div 元素包含了 4 个 button。
+```
+<div>
+    <button>First button</button>
+    <button>Second button</button>
+    <button>Third button</button>
+    <button>Fourth button</button>
+</div>
+假设你想要选择第三个按钮，你可以像下面那样使用 querySelector()。代码中使用了 CSS nth-child 选择器去获取 div 中的第三个 button。
+
+const thirdBtn = document.querySelector('div button:nth-child(3)')
+console.log(thirdBtn)//<button>Third button</button>
+```  
+
+
+### 5. querySelectorAll()
+
+- **作用**：`querySelectorAll()` 方法返回文档中匹配指定 CSS 选择器的所有元素的一个静态（非实时） NodeList 集合。与 `getElementsByClassName()` 和 `getElementsByTagName()` 返回的 HTMLCollection 不同，这个 NodeList 在文档更新后不会自动更新。
+- **用法**：`document.querySelectorAll('selector')`，其中 `'selector'` 是一个CSS选择器字符串，与 `querySelector()` 相同。
+- **返回值**：一个包含所有匹配指定选择器的元素的 NodeList 集合。
+```
+const allBtns = document.querySelectorAll('button')
+console.log(allBtns)
+
+//[button,button,button,button]
+
+```
+
+#### 事例：
+~~~
+<div class="slider-wrapper">
+      <img src="./images/slider01.jpg" alt="" />
+ </div>
+~~~
+获取div中的img
+~~~
+1.
+var img = document.querySelector('.slider-wrapper img');
+
+2.
+var imgs = document.querySelector('.slider-wrapper').getElementsByTagName('img');  
+~~~
+
+
+`innerText` 和 `textContent` 是两个在Web开发中常用的属性，它们都用于获取或设置HTML元素内部的文本内容，但它们之间存在一些关键的区别。
+
+### innerText
+
+- **定义**：`innerText` 属性用于获取或设置元素内部渲染后的文本内容。这包括元素本身的文本内容以及其后代元素的文本内容，但是会忽略HTML标签。此外，`innerText` 的行为可能会受到CSS样式的影响，比如某些被CSS隐藏（如 `display: none`）的文本可能不会被包含在 `innerText` 返回的结果中。
+
+- **特点**：
+  - 忽略HTML标签。
+  - 可能受到CSS样式（如可见性）的影响。
+  - 在处理空白字符（如空格、换行符）时，可能会进行合并或标准化。
+  - 主要是在IE浏览器中引入的，但在其他浏览器中也有实现，但行为可能有所不同。
+
+### textContent
+
+- **定义**：`textContent` 属性用于获取或设置指定节点及其所有后代的文本内容。与 `innerText` 不同，`textContent` 获取的文本内容不会受到CSS样式的影响，它总是返回或设置纯文本内容，包括隐藏元素的文本，但不包括HTML或XML标记。
+
+- **特点**：
+  - 保留所有空白字符（如空格、换行符等）。
+  - 不受CSS样式影响（如可见性）。
+  - 是W3C标准属性，在所有现代浏览器中都有良好的支持。
+
+### 比较
+
+| 属性 | `innerText` | `textContent` |
+| --- | --- | --- |
+| **定义** | 获取或设置元素内部渲染后的文本内容（忽略HTML标签，可能受CSS样式影响） | 获取或设置指定节点及其所有后代的文本内容（包括隐藏文本，忽略HTML标签，不受CSS样式影响） |
+| **空白处理** | 可能会合并或标准化空白字符 | 保留所有空白字符 |
+| **样式影响** | 可能受到CSS样式（如可见性）的影响 | 不受CSS样式影响 |
+| **兼容性** | 在大多数浏览器中都能工作，但行为可能有所不同（特别是非IE浏览器） | 是W3C标准属性，在所有现代浏览器中都有良好的支持 |
+
+### 使用建议
+
+- 如果你需要获取或设置元素及其后代的纯文本内容，并且希望这个操作在所有现代浏览器中都有一致的行为，那么推荐使用 `textContent`。
+- 如果你需要的行为更接近于用户在浏览器中实际看到的文本（包括由于CSS样式而可能隐藏或显示的文本），并且可以接受在不同浏览器中的行为差异，那么 `innerText` 可能是一个选择。但是，请注意 `innerText` 的兼容性和行为差异可能会导致跨浏览器问题。
+
+
+## 元素属性
+### getAttribute()
+
+`getAttribute()` 方法用于获取指定元素的属性值。它接受一个参数，即要获取的属性的名称（以字符串形式），并返回该属性的值（如果找到的话）。如果没有找到该属性，则返回 `null`。
+
+```javascript
+var element = document.getElementById("myElement");
+var value = element.getAttribute("data-custom");
+console.log(value); // 输出：属性值（如果设置了的话），否则为null
+```
+
+### setAttribute()
+
+`setAttribute()` 方法用于设置或更改指定元素的属性值。它接受两个参数：第一个参数是要设置的属性的名称（以字符串形式），第二个参数是要设置的新值。
+
+```javascript
+var element = document.getElementById("myElement");
+element.setAttribute("data-custom", "newValue");
+// 现在元素的data-custom属性的值被设置为"newValue"
+```
+
+### removeAttribute()
+
+`removeAttribute()` 方法用于从指定元素中删除一个属性。它接受一个参数，即要删除的属性的名称（以字符串形式）。
+
+```javascript
+var element = document.getElementById("myElement");
+element.removeAttribute("data-custom");
+// 现在元素的data-custom属性被删除了
+```
+
+### hasAttribute()
+
+`hasAttribute()` 方法用于检查指定元素是否包含某个特定的属性。它接受一个参数，即要检查的属性的名称（以字符串形式），并返回一个布尔值。如果元素包含该属性，则返回 `true`；否则，返回 `false`。
+
+```javascript
+var element = document.getElementById("myElement");
+var hasCustomData = element.hasAttribute("data-custom");
+console.log(hasCustomData); // 如果元素有data-custom属性，则输出true；否则，输出false
+```
+
+这四个方法在处理DOM元素时非常有用，它们提供了一种简单而强大的方式来读取、修改或删除HTML元素的属性。
+
+
+## 更改DOM样式
+- .style
+- className
+- classList
+- classList.add() 
+- classList.remove()
+- classList.replace()
+- classList.contains()
+- classList.toggle()
+
+在Web开发中，更改DOM元素的样式是一个常见需求。这可以通过多种方式实现，包括直接操作元素的`style`属性、使用`className`属性、以及利用`classList`对象提供的更丰富的类操作方法。以下是对这些方法的详细解释：
+
+### .style
+
+`.style`属性允许你直接访问和修改HTML元素的样式。你可以通过这个属性设置CSS属性，比如颜色、边距、字体大小等。
+
+```javascript
+var element = document.getElementById("myElement");
+element.style.color = "blue"; // 将文本颜色更改为蓝色
+element.style.margin = "20px"; // 设置外边距
+```
+
+### className
+
+`className`属性用于获取或设置元素的`class`属性值。当你想要完全替换元素的类名时，这个属性非常有用。但是，请注意，这会覆盖元素上已有的所有类名。
+
+```javascript
+var element = document.getElementById("myElement");
+element.className = "newClass"; // 替换所有现有的类名
+```
+
+### classList
+
+`classList`属性提供了一个更加灵活和强大的方式来操作元素的类。它是一个只读属性，但它包含了一系列用于添加、移除、切换和检查类的方法。
+
+#### classList.add()
+
+`add()`方法用于向元素添加一个或多个类名。如果指定的类名已经存在，则不会添加。
+
+```javascript
+var element = document.getElementById("myElement");
+element.classList.add("class1", "class2"); // 添加多个类名
+```
+
+#### classList.remove()
+
+`remove()`方法用于从元素中移除一个或多个类名。如果指定的类名不存在，则不执行任何操作。
+
+```javascript
+var element = document.getElementById("myElement");
+element.classList.remove("class1"); // 移除一个类名
+```
+
+#### classList.replace()
+
+`replace()`方法用于将一个类名替换为另一个类名。如果原始类名不存在，则不会添加新类名。
+
+```javascript
+var element = document.getElementById("myElement");
+element.classList.replace("oldClass", "newClass"); // 替换类名
+```
+
+**注意**：并非所有浏览器都原生支持`replace()`方法。在较旧的浏览器中，你可能需要使用其他方法（如`remove()`后跟`add()`）来实现相同的功能。
+
+#### classList.contains()
+
+`contains()`方法用于检查元素是否包含指定的类名。如果包含，则返回`true`；否则，返回`false`。
+
+```javascript
+var element = document.getElementById("myElement");
+var hasClass = element.classList.contains("class1"); // 检查是否包含类名
+```
+
+#### classList.toggle()
+
+`toggle()`方法用于切换元素的类名。如果元素中存在指定的类名，则将其移除；如果不存在，则将其添加。你还可以传递第二个参数来强制添加（`true`）或移除（`false`）类名，而不管它当前是否存在。
+
+```javascript
+var element = document.getElementById("myElement");
+element.classList.toggle("class1"); // 切换类名
+element.classList.toggle("class2", true); // 强制添加class2
+element.classList.toggle("class3", false); // 强制移除class3
+```
+
+
+### .style.display/border....其他css属性
+例如：
+~~~
+button.style.display="none" 隐藏按钮
+~~~
+
+
+### 
+一个嵌入输入和label的form
+
+Example Code
+~~~
+<form id="form">
+  <label for="first-name">First name</label>
+  <input id="first-name" type="text">
+</form>
+~~~
+
+在form元素中原有的文本及内容添加新的内容或元素
+~~~
+.js
+
+Example Code
+const formElement = document.getElementById("form");
+const formContent = `
+  <label for="last-name">Last name</label>
+  <input id="last-name" type="text">
+`;
+formElement.innerHTML += formContent;
+
+~~~
+
+## 遍历DOM
+- parentNode 
+- parentElement
+- childNodes
+
+*不论是什么Node，结果都是整个html代码，例如：*
+~~~
+<div class="container">
+    <p class="full-text">
+        <i id="italics">Some italicized text</i>
+    </p>
+  </div>
+  
+  
+const italicizedText = document.getElementById('italics')
+
+
+console.log(italicizedText.parentNode)
+// 输出：<p class="full-text">
+        <i id="italics">Some italicized text</i>
+    </p>
+    
+    
+console.log(italicizedText.parentNode.parentNode)
+//输出：<div class="container">
+    <p class="full-text">
+        <i id="italics">Some italicized text</i>
+    </p>
+  </div>
+
+~~~
+
+
+- children:可以使用索引直接访问某一个特定的子节点
+~~~
+<div id="myElement">  
+  <p class="my-class">第一段文本</p>  
+  <span>非元素节点示例</span>  
+  <p class="my-class">第二段文本</p>  
+</div>
+
+
+var secondChild = document.getElementById('myElement').children[1];  
+console.log(secondChild.outerHTML); // 打印第二个子元素的HTML <p class="my-class">第二段文本</p>
+
+~~~
+
+
+- firstChild：只选择父元素的第一个子节点
+- lastChild: 只选择父元素的最后一个子节点。
+- firstElementChild：选择父元素的第一个子元素(只包含选中行的代码)。
+- lastElementChild: 选择父元素的最后一个子元素。(只包含选中行的代码)
+
+~~~
+    <div id="container">
+        A text node
+        <p>Some paragraph</p>
+        <!-- This is a comment -->
+        <span>Span Element</span>
+    </div>
+    
+    
+    <script>
+        const container = document.getElementById('container');
+        const containerChildNodes = container.childNodes;    
+        const containerChildren = container.children;
+       
+        console.log(containerChildNodes);
+        //NodeList(7)[text, p, text, comment, text, span, text]
+      
+        console.log(containerChildren);
+        //NodeList(2)[p, span]
+        console.log("FIRST CHILD:", container.firstChild)
+        //"A text node"
+        console.log("LAST CHILD:", container.lastChild)
+        //#text
+        console.log("FIRST ELEMENT: ", container.firstElementChild)
+        //<p>Some paragraph</p>
+        console.log("LAST ELEMENT:", container.lastElementChild)
+        //<span>Span Element</span>
+    </script>
+~~~
+
+
+# JavaScript 的事件流
+## 事件冒泡：事件首先在发生的目标（或是某个元素）被注册，然后向外注册到父元素，最后注册到最外层的元素
+![](./DOM4.png)
+~~~
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Event bubbling DEMO</title>
+    </head>
+    <body>
+        <div id="outer">
+            <div id="inner">
+              <button id='btn'>Click Here</button>
+            </div>
+        </div>
+    </body>
+</html>
+让我们分别添加一个事件监听器到button、#inner、#outer 上：
+
+const button = document.getElementById('btn')
+const innerDiv = document.getElementById('inner')
+const outerDiv = document.getElementById('outer')
+
+button.addEventListener('click', function() {
+  console.log('Click on button')
+})
+
+innerDiv.addEventListener('click', function() {
+  console.log('Click on inner Div')
+})
+
+outerDiv.addEventListener('click', function() {
+  console.log('Click on outer Div')
+})
+
+默认情况下，浏览器使用事件冒泡的机制，因此，无需为事件监听器添加任何其他参数。这是事件处理函数响应按钮点击时的运行顺序：
+button
+#innerDiv
+#outerDiv
+~~~
+
+
+
+
+## 事件捕获：与事件冒泡相反
+![](./DOM2.PNG)
+~~~
+使用事件捕获模型，你可以通过给事件监听器传递第三个参数为 true。
+
+const button = document.getElementById('btn')
+const innerDiv = document.getElementById('inner')
+const outerDiv = document.getElementById('outer')
+
+button.addEventListener('click', function() {
+  console.log('Click on button')
+}, true)
+
+innerDiv.addEventListener('click', function() {
+  console.log('Click on inner Div')
+}, true)
+
+outerDiv.addEventListener('click', function() {
+  console.log('Click on outer Div')
+}, true)
+现在运行，事件处理函数的执行顺序将会是相反的方向，像是这样：
+
+#outerDiv
+#innerDiv
+button
+~~~
+
+## stopProagation()
+但是如果你不想注册事件到所有祖先呢？这就是 stopPropagation() 的作用所在，你可以使用这个方法在整个 DOM 中阻止事件的传播。
+~~~
+button.addEventListener('click', function(event) {
+  event.stopPropagation()
+  //stopPropagation() 只允许第一个事件监听器的执行。
+  console.log('Click on button')
+})
+
+innerDiv.addEventListener('click', function() {
+  console.log('Click on inner Div')
+})
+
+outerDiv.addEventListener('click', function() {
+  console.log('Click on outer Div')
+})
+~~~
+stopPropagation() 只允许第一个事件监听器的执行。
